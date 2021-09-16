@@ -57,7 +57,7 @@ function copyImportTabFromOldSpreadsheet() {
 
 function copyUserTabsFromOldSpreadsheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  tabsToTransfer = ss.getSheetByName("UpgradeFromOldGs".getRange("A2").getValue();
+  tabsToTransfer = ss.getSheetByName("UpgradeFromOldGs").getRange("A2").getValue();
   var copySheets = splitString(tabsToTransfer);
   var sourceSpreadsheet = getOldSs();
   targetSpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -70,7 +70,7 @@ function copyUserTabsFromOldSpreadsheet() {
 
 function getOldSs() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  oldSsUrl = ss.getSheetByName("UpgradeFromOldGs").getRange("A1")).getValue();
+  oldSsUrl = ss.getSheetByName("UpgradeFromOldGs").getRange("A1").getValue();
   var oldSs = SpreadsheetApp.openByUrl(oldSsUrl);
   return oldSs;
 }
