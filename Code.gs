@@ -48,7 +48,6 @@ function importNotesFromOldSpreadsheet() {
   rangeToWrite.setWrap(true);
 
   importImportFromOldSpreadsheet();
-
 }
 
 function copyUserTabsFromOldSpreadsheet() {
