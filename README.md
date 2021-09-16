@@ -24,7 +24,7 @@ Copy the contents from the [Code.gs](https://github.com/edjusted/update-do-not-a
 Click the save button to save.
 
 Go back to the new GS window and reload the page. After a few seconds, you should see a new menu called **Upgrade from old Checklist**.\
-Select **Import/overwrite Crew & Crew Notes** and your Crew and Crew Notes info will be copied over.\
+Click on that, and select **Import/overwrite Crew & Crew Notes**. Your Crew and Crew Notes info will be copied over after a few moments.\
 **Important**: The first time you select this option, Google will ask you to grant permissions to the script. Allow the permissions.\
 You will then need to select the option *again*. (The first "run" kicks off the permission process but doesn't actually run the scripts.)
 
