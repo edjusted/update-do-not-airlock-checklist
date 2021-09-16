@@ -3,7 +3,7 @@
 # Introduction
 If you play Star Trek Timelines, there is a Google Sheets tool available called the [Do Not Airlock checklist](https://forum.disruptorbeam.com/stt/discussion/15561/do-not-airlock-checklist-thread-4/p1).
 
-These scripts are for people who use that Google Sheet and make it easy to import/copy over your info from your old Sheet to the new one when there's an update.
+If you use that Google Sheet, these scripts make it easy to import/copy over your info from your old Sheet to the new one when there's an update.
 
 
 # Usage/Installation
