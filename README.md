@@ -26,7 +26,7 @@ Click the save button to save.
 Go back to the new GS window and reload the page.\
 After a few seconds, you should see a new menu called **Upgrade from old Checklist**.
 Click on that, and select **Import/overwrite Crew & Crew Notes**.\
-      ![Google Authorization](https://github.com/edjusted/update-do-not-airlock-checklist/blob/main/google-authorization.png)\
+      ![Google Authorization](.github/google-authorization-screenshot.png)\
     **Important**: The first time you select this option, Google will ask you to grant permissions to the script. Go through the steps and **Allow** the permissions.\
     You will then need to select the menu option *again* to actually run it. (The first "run" kicks off the permission process but doesn't actually run the scripts.)
 
