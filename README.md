@@ -1,11 +1,10 @@
 # update-do-not-airlock-checklist
 
 # Introduction
-If you play Star Trek Timelines, there is a Google Sheets tool available called the Do Not Airlock checklist.
+If you play Star Trek Timelines, there is a Google Sheets tool available called the [Do Not Airlock checklist](https://forum.disruptorbeam.com/stt/discussion/15561/do-not-airlock-checklist-thread-4/p1).
 
 These scripts are for people who use that Google Sheet and make it easy to import/copy over your info from your old Sheet to the new one when there's an update.
 
-The checklist is available here: https://forum.disruptorbeam.com/stt/discussion/15561/do-not-airlock-checklist-thread-4/p1
 
 # Usage/Installation
 
@@ -18,10 +17,10 @@ Paste the url of your old Google Sheet into cell A1. Note that it *must* be in c
 From here, all actions should be done on the new GS.
 
 Go to the **Tools** menu and select **Script Editor**.
-A new tab should open and you'll probably see some code already there. It probably starts with `function pullData() {`
-Ignore that and leave it alone. 
+A new tab should open and you'll probably see some code there already, and it probably starts with `function pullData() {`
+You'll want to ignore it and leave it alone. 
 
-Copy the contents from the Code.gs file here and paste it into the Script Editor tab *below* any existing code (i.e. don't overwrite any existing code).
+Copy the contents from the [Code.gs](https://github.com/edjusted/update-do-not-airlock-checklist/blob/main/Code.gs) file here and paste it into the Script Editor tab *below* any existing code (i.e. don't overwrite any existing code).
 Click the save button to save.
 
 Go back to the new GS window and reload the page. After a few seconds, you should see a new menu called **Upgrade from old Checklist**.
