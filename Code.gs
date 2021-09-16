@@ -12,13 +12,7 @@ function onOpen() {
   ui.createMenu('Upgrade from old Checklist')
     .addItem('Import/overwrite Crew & Crew Notes', 'importNotesFromOldSpreadsheet')
     .addItem('Copy over user tabs', 'copyUserTabsFromOldSpreadsheet')
-    .addItem('Do both', 'copyOverEverything')
     .addToUi();
-}
-
-function copyOverEverything() {
-  importNotesFromOldSpreadsheet();
-  copyUserTabsFromOldSpreadsheet();
 }
 
 function importNotesFromOldSpreadsheet() {
@@ -30,6 +24,7 @@ function importNotesFromOldSpreadsheet() {
   var rangeToWrite = sheet.getRange("H" + startingRow + ":H" + (sheet.getLastRow()));
   var valuesToOverwrite = rangeToWrite.getValues();
   var oldSs = getOldSs();
+
   var oldSheet = oldSs.getSheetByName('Crew');
   var rangeOfNamesToReadFrom = oldSheet.getRange(5, 1, oldSheet.getLastRow(), 1);
   var valuesOfOldNames = rangeOfNamesToReadFrom.getValues();
@@ -47,12 +42,22 @@ function importNotesFromOldSpreadsheet() {
   rangeToWrite.setValues(valuesToOverwrite);
   rangeToWrite.setWrap(true);
 
-  importImportFromOldSpreadsheet();
+  copyImportTabFromOldSpreadsheet();
+}
+
+function copyImportTabFromOldSpreadsheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Import');
+  var oldSs = getOldSs();
+  var oldSheet = oldSs.getSheetByName('Import');
+  var oldImportData = oldSheet.getDataRange().getValues();
+  sheet.clearContents;
+  sheet.getRange(1, 1, oldImportData.length, oldImportData[0].length).setValues(oldImportData);
 }
 
 function copyUserTabsFromOldSpreadsheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  tabsToTransfer = ss.getRangeByName("tabsToTransfer").getValue();
+  tabsToTransfer = ss.getSheetByName("UpgradeFromOldGs".getRange("A2").getValue();
   var copySheets = splitString(tabsToTransfer);
   var sourceSpreadsheet = getOldSs();
   targetSpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -63,26 +68,15 @@ function copyUserTabsFromOldSpreadsheet() {
   }
 }
 
-function importImportFromOldSpreadsheet() {
+function getOldSs() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName('Import');
-  var oldSs = getOldSs();
-  var oldSheet = oldSs.getSheetByName('Import');
-
-  var oldImportData = oldSheet.getDataRange().getValues();
-  sheet.clearContents;
-  sheet.getRange(1, 1, oldImportData.length, oldImportData[0].length).setValues(oldImportData);
+  oldSsUrl = ss.getSheetByName("UpgradeFromOldGs").getRange("A1")).getValue();
+  var oldSs = SpreadsheetApp.openByUrl(oldSsUrl);
+  return oldSs;
 }
 
 function splitString(string) {
   var array1 = [{}];
   array1 = string.split(",");
   return array1
-}
-
-function getOldSs() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  oldSsUrl = ss.getRangeByName("oldSpreadsheetUrl").getValue();
-  var oldSs = SpreadsheetApp.openByUrl(oldSsUrl);
-  return oldSs;
 }
