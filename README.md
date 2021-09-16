@@ -23,9 +23,10 @@ You'll want to ignore it and leave it alone.
 Copy the contents from the [Code.gs](https://github.com/edjusted/update-do-not-airlock-checklist/blob/main/Code.gs) file here and paste it into the Script Editor tab *below* any existing code (i.e. don't overwrite any existing code).\
 Click the save button to save.
 
-Go back to the new GS window and reload the page. After a few seconds, you should see a new menu called **Upgrade from old Checklist**.\
-Click on that, and select **Import/overwrite Crew & Crew Notes**. Your Crew and Crew Notes info will be copied over after a few moments.\
-**Important**: The first time you select this option, Google will ask you to grant permissions to the script. Allow the permissions.\
+Go back to the new GS window and reload the page.\
+After a few seconds, you should see a new menu called **Upgrade from old Checklist**.
+Click on that, and select **Import/overwrite Crew & Crew Notes**.\
+    **Important**: The first time you select this option, Google will ask you to grant permissions to the script. Go through the steps and **Allow** the permissions.\
 You will then need to select the option *again*. (The first "run" kicks off the permission process but doesn't actually run the scripts.)
 
 **Note**: technically, this copies over your Crew Notes and the contents of the old **Import** tab.\
