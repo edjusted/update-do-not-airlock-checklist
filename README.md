@@ -53,3 +53,7 @@ First, go to the **UpgradeFromOldGs** tab that you created on the new GS.\
 In cell A2, type in the *exact* name(s) of the tab(s) you want to copy over, separated by a comma if there are multiple tabs.
 
 Then, go to the menu called **Upgrade from old Checklist** and select **Copy over user tabs**
+
+# Troubleshooting
+
+If any of the imports time out, just wait for the GS to finish processing anything, then try it again. Usually that will fix the problem.
