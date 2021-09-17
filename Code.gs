@@ -10,12 +10,19 @@ function onOpen() {
 
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Upgrade from old Checklist')
-    .addItem('Import/overwrite Crew & Crew Notes', 'importNotesFromOldSpreadsheet')
+    .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
     .addItem('Copy over user tabs', 'copyUserTabsFromOldSpreadsheet')
     .addToUi();
 }
 
-function importNotesFromOldSpreadsheet() {
+function importAllFromOldSpreadsheet() {
+  copyCrewNotesFromOldSpreadsheet();
+  copyMissionsFromOldSpreadsheet();
+  copySettingsFromOldSpreadsheet();
+  copyImportTabFromOldSpreadsheet();
+}
+
+function copyCrewNotesFromOldSpreadsheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('Crew');
   var startingRow = 5;
@@ -41,8 +48,6 @@ function importNotesFromOldSpreadsheet() {
   }
   rangeToWrite.setValues(valuesToOverwrite);
   rangeToWrite.setWrap(true);
-
-  copyImportTabFromOldSpreadsheet();
 }
 
 function copyImportTabFromOldSpreadsheet() {
@@ -66,6 +71,43 @@ function copyUserTabsFromOldSpreadsheet() {
     var value = copySheets[key].trim();
     sourceSpreadsheet.getSheetByName(value).copyTo(targetSpreadSheet).setName(value);
   }
+}
+
+function copyMissionsFromOldSpreadsheet() {
+  var sheetName = "Missions";
+  var rangeToCopy = "D10:D129";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "H10:H15";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+}
+
+function copySettingsFromOldSpreadsheet() {
+  var sheetName = "Settings";
+  var rangeToCopy = "E7:E15";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "H7";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "E19:G24";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "E29:H36";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "E39:G55";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "E59:E102";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "E107:E125";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "H107:H125";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+}
+
+function copyRangeFromOldSs(sheetName, range) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var targetSheet = ss.getSheetByName(sheetName);
+  var oldSs = getOldSs();
+  var oldSheet = oldSs.getSheetByName(sheetName);
+  var oldData = oldSheet.getRange(range).getValues();
+  targetSheet.getRange(range).setValues(oldData);
 }
 
 function getOldSs() {
