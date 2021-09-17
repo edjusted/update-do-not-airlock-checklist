@@ -36,7 +36,7 @@ The reason each function needs to be called separately is because this GS is ext
 (The Settings tab especially can take a while to import. Don't be surprised if it takes 3-4 mins. Please be patient.)\
 So if you want to import multiple items/tags, best practices is to do each one, wait for the GS to finish processing, then select the next one. Repeat and rinse.
 
-(You'll actually need to do this twice the *first* time. Keep reading.)\
+(You'll actually need to do this **twice** the *first* time. Keep reading.)\
     **Important**: The first time you select this option, Google will ask you to grant permissions to the script. Go through the steps and **Allow** the permissions.\
           ![Google Authorization](.github/google-authorization-screenshot.png)\
     You will then need to select the menu option *again* to actually run it. (The first "run" kicks off the permission process but doesn't actually run the scripts.)
