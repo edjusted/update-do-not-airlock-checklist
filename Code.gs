@@ -11,10 +11,10 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Upgrade from old Checklist')
     // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
-    .addItem('Import/overwrite just Crew Notes', 'copyCrewNotesFromOldSpreadsheet')
-    .addItem('Import/overwrite just Crew (Import tab)', 'copyImportTabFromOldSpreadsheet')
-    .addItem('Import/overwrite just Missions', 'copyMissionsFromOldSpreadsheet')
-    .addItem('Import/overwrite just Settings', 'copySettingsFromOldSpreadsheet')
+    .addItem('Import/overwrite Crew Notes', 'copyCrewNotesFromOldSpreadsheet')
+    .addItem('Import/overwrite Crew (Import tab)', 'copyImportTabFromOldSpreadsheet')
+    .addItem('Import/overwrite Missions', 'copyMissionsFromOldSpreadsheet')
+    .addItem('Import/overwrite Settings', 'copySettingsFromOldSpreadsheet')
     .addItem('Copy over user tabs', 'copyUserTabsFromOldSpreadsheet')
     .addToUi();
 }
