@@ -33,6 +33,7 @@ After a few seconds, you should see a new menu called **Upgrade from old Checkli
 - Copy over user tabs (see Options below)
 
 The reason each function needs to be called separately is because this GS is extremely formula-intensive, and this can cause timeout issues when you import a lot of data.\
+(The Settings tab especially can take a while to import. Don't be surprised if it takes 3-4 mins. Please be patient.)\
 So if you want to import multiple items/tags, best practices is to do each one, wait for the GS to finish processing, then select the next one. Repeat and rinse.
 
 (You'll actually need to do this twice the *first* time. Keep reading.)\
