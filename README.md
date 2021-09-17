@@ -25,13 +25,24 @@ Click the save button to save.
 4. Go back to the new GS window and reload the page.\
 After a few seconds, you should see a new menu called **Upgrade from old Checklist**.
 
-5. Click on the new **Upgrade from old Checklist** menu, and select **Import/overwrite Crew, Notes, Missions & Settings**.\
-(You'll actually need to do this twice. Keep reading.)\
+5. Click on the new **Upgrade from old Checklist** menu, and select one of the following:
+- Import/overwrite Crew Notes
+- Import/overwrite Crew (Import tab)<sup>*</sup>
+- Import/overwrite Missions
+- Import/overwrite Settings
+- Copy over user tabs (see Options below)
+
+The reason each function needs to be called separately is because this GS is extremely formula-intensive, and this can cause timeout issues when you import a lot of data.\
+So if you want to import multiple items/tags, best practices is to do each one, wait for the GS to finish processing, then select the next one. Repeat and rinse.
+
+(You'll actually need to do this twice the *first* time. Keep reading.)\
     **Important**: The first time you select this option, Google will ask you to grant permissions to the script. Go through the steps and **Allow** the permissions.\
           ![Google Authorization](.github/google-authorization-screenshot.png)\
     You will then need to select the menu option *again* to actually run it. (The first "run" kicks off the permission process but doesn't actually run the scripts.)
 
-**Note**: technically, this copies over your Crew Notes, the **Missions** & **Settings** tab info, and the contents of the old **Import** tab.\
+
+
+`*` **Note**: technically, **Import/overwrite just Crew (Import tab)** copies over the contents of the old **Import** tab.\
 If you manage your Crew manually (*without* using the **Import** tab, your Crew Notes will be copied over but you'll need to update your Crew info manually.
 
 # Options
