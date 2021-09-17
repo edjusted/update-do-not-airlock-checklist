@@ -43,8 +43,8 @@ So if you want to import multiple items/tags, best practices is to do each one, 
 
 
 
-`*` **Note**: technically, **Import/overwrite just Crew (Import tab)** copies over the contents of the old **Import** tab.\
-If you manage your Crew manually (*without* using the **Import** tab, your Crew Notes will be copied over but you'll need to update your Crew info manually.
+`*` **Note**: technically, **Import/overwrite Crew (Import tab)** copies over the contents of the old **Import** tab.\
+If you manage your Crew manually (*without* using the **Import** tab, you can still copy over your *Crew Notes*, but you'll need to update your Crew info manually.
 
 # Options
 
