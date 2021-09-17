@@ -10,7 +10,11 @@ function onOpen() {
 
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Upgrade from old Checklist')
-    .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
+    // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
+    .addItem('Import/overwrite just Crew Notes', 'copyCrewNotesFromOldSpreadsheet')
+    .addItem('Import/overwrite just Crew (Import tab)', 'copyImportTabFromOldSpreadsheet')
+    .addItem('Import/overwrite just Missions', 'copyMissionsFromOldSpreadsheet')
+    .addItem('Import/overwrite just Settings', 'copySettingsFromOldSpreadsheet')
     .addItem('Copy over user tabs', 'copyUserTabsFromOldSpreadsheet')
     .addToUi();
 }
@@ -20,6 +24,7 @@ function importAllFromOldSpreadsheet() {
   copyMissionsFromOldSpreadsheet();
   copySettingsFromOldSpreadsheet();
   copyImportTabFromOldSpreadsheet();
+  copyUserTabsFromOldSpreadsheet();
 }
 
 function copyCrewNotesFromOldSpreadsheet() {
@@ -63,13 +68,15 @@ function copyImportTabFromOldSpreadsheet() {
 function copyUserTabsFromOldSpreadsheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   tabsToTransfer = ss.getSheetByName("UpgradeFromOldGs").getRange("A2").getValue();
-  var copySheets = splitString(tabsToTransfer);
-  var sourceSpreadsheet = getOldSs();
-  targetSpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
+  if (tabsToTransfer !== "") {
+    var copySheets = splitString(tabsToTransfer);
+    var sourceSpreadsheet = getOldSs();
+    targetSpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
 
-  for (var key in copySheets) {  // OK in V8
-    var value = copySheets[key].trim();
-    sourceSpreadsheet.getSheetByName(value).copyTo(targetSpreadSheet).setName(value);
+    for (var key in copySheets) {  // OK in V8
+      var value = copySheets[key].trim();
+      sourceSpreadsheet.getSheetByName(value).copyTo(targetSpreadSheet).setName(value);
+    }
   }
 }
 
@@ -83,9 +90,12 @@ function copyMissionsFromOldSpreadsheet() {
 
 function copySettingsFromOldSpreadsheet() {
   var sheetName = "Settings";
+
   var rangeToCopy = "E7:E15";
   copyRangeFromOldSs(sheetName, rangeToCopy);
   var rangeToCopy = "H7";
+  copyRangeFromOldSs(sheetName, rangeToCopy);
+  var rangeToCopy = "E19:G24";
   copyRangeFromOldSs(sheetName, rangeToCopy);
   var rangeToCopy = "E19:G24";
   copyRangeFromOldSs(sheetName, rangeToCopy);
@@ -99,6 +109,7 @@ function copySettingsFromOldSpreadsheet() {
   copyRangeFromOldSs(sheetName, rangeToCopy);
   var rangeToCopy = "H107:H125";
   copyRangeFromOldSs(sheetName, rangeToCopy);
+  copySettingsFormulasIfAny();
 }
 
 function copyRangeFromOldSs(sheetName, range) {
@@ -108,6 +119,45 @@ function copyRangeFromOldSs(sheetName, range) {
   var oldSheet = oldSs.getSheetByName(sheetName);
   var oldData = oldSheet.getRange(range).getValues();
   targetSheet.getRange(range).setValues(oldData);
+}
+
+function copySettingsFormulasIfAny() {
+  copySettingsCellWithFormulasFromOldSs("E29");
+  copySettingsCellWithFormulasFromOldSs("E30");
+  copySettingsCellWithFormulasFromOldSs("E31");
+  copySettingsCellWithFormulasFromOldSs("E32");
+  copySettingsCellWithFormulasFromOldSs("E33");
+  copySettingsCellWithFormulasFromOldSs("E34");
+  copySettingsCellWithFormulasFromOldSs("F29");
+  copySettingsCellWithFormulasFromOldSs("F30");
+  copySettingsCellWithFormulasFromOldSs("F31");
+  copySettingsCellWithFormulasFromOldSs("F32");
+  copySettingsCellWithFormulasFromOldSs("F33");
+  copySettingsCellWithFormulasFromOldSs("F34");
+  copySettingsCellWithFormulasFromOldSs("G29");
+  copySettingsCellWithFormulasFromOldSs("G30");
+  copySettingsCellWithFormulasFromOldSs("G31");
+  copySettingsCellWithFormulasFromOldSs("G32");
+  copySettingsCellWithFormulasFromOldSs("G33");
+  copySettingsCellWithFormulasFromOldSs("G34");
+  copySettingsCellWithFormulasFromOldSs("H29");
+  copySettingsCellWithFormulasFromOldSs("H30");
+  copySettingsCellWithFormulasFromOldSs("H31");
+  copySettingsCellWithFormulasFromOldSs("H32");
+  copySettingsCellWithFormulasFromOldSs("H33");
+  copySettingsCellWithFormulasFromOldSs("H34");
+}
+
+function copySettingsCellWithFormulasFromOldSs(cell) {
+  var sheetName = "Settings";
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var targetSheet = ss.getSheetByName(sheetName);
+  var oldSs = getOldSs();
+  var oldSheet = oldSs.getSheetByName(sheetName);
+  var oldData = oldSheet.getRange(cell).getFormula();
+  if (oldData !== "") {
+    targetSheet.getRange(cell).setFormula(oldData);
+  }
 }
 
 function getOldSs() {
