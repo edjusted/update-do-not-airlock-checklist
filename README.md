@@ -11,7 +11,7 @@ If you use that Google Sheet, these scripts make it easy to import/copy over you
 0. First, copy the url of your old Google Sheet (aka GS). You'll need this later.
 
 1. Make a copy of the new Checklist and create a new tab called **UpgradeFromOldGs**.\
-Paste the url of your *old* Google Sheet into cell A1. Note that it *must* be in cell A1.
+Paste the url of your *old* Google Sheet into cell B1. Note that it *must* be in cell B1.
 
 From here, all actions should be done on the new GS.
 
@@ -26,15 +26,15 @@ Click the save button to save.
 After a few seconds, you should see a new menu called **Upgrade from old Checklist**.
 
 5. Click on the new **Upgrade from old Checklist** menu, and select one of the following:
-- Import/overwrite Crew Notes
+- Import/overwrite Crew (manual)<sup>*</sup>
 - Import/overwrite Crew (Import tab)<sup>*</sup>
+- Import/overwrite Crew Notes only
 - Import/overwrite Missions
 - Import/overwrite Settings
 - Copy over user tabs (see Options below)
 
-The reason each function needs to be called separately is because this GS is extremely formula-intensive, and this can cause timeout issues when you import a lot of data.\
-(The Settings tab especially can take a while to import. Don't be surprised if it takes 3-4 mins. Please be patient.)\
-So if you want to import multiple items/tags, best practices is to do each one, wait for the GS to finish processing, then select the next one. Repeat and rinse.
+The reason each function needs to be called separately is because this GS is extremely formula-intensive, and this can cause timeout issues when you import a lot of data. (Some of the functions may take upwards of 1-2 mins. Please be patient.)\
+&nbsp; So if you want to import multiple items, best practices is to do each one, wait for the GS to finish processing, then select the next one. Repeat and rinse.
 
 (You'll actually need to do this **twice** the *first* time. Keep reading.)\
     **Important**: The first time you select this option, Google will ask you to grant permissions to the script. Go through the steps and **Allow** the permissions.\
@@ -43,14 +43,14 @@ So if you want to import multiple items/tags, best practices is to do each one, 
 
 
 
-`*` **Note**: technically, **Import/overwrite Crew (Import tab)** copies over the contents of the old **Import** tab.\
-If you manage your Crew manually (*without* using the **Import** tab, you can still copy over your *Crew Notes*, but you'll need to update your Crew info manually.
+`*` **Import/overwrite Crew Note**: if you manage your crew manually by manually typing in your crew levels and number of stars, you'll want to use the **Import/overwrite Crew (manual)** option, which will copy over all of your manually entered info.\
+&nbsp; If you use [Datacore](https://datacore.app/playertools/) to import your crew data, you can either use the **Import/overwrite Crew (Import tab)**, which copies over the contents of the old **Import** tab. Or you can simply reimport a fresh export from Datacore.
 
 # Options
 
 If you created additional tabs in the old GS for your own purposes and you also want to copy those over, you can do that.\
 First, go to the **UpgradeFromOldGs** tab that you created on the new GS.\
-In cell A2, type in the *exact* name(s) of the tab(s) you want to copy over, separated by a comma if there are multiple tabs.
+In cell B2, type in the *exact* name(s) of the tab(s) you want to copy over, separated by a comma if there are multiple tabs.
 
 Then, go to the menu called **Upgrade from old Checklist** and select **Copy over user tabs**
 
