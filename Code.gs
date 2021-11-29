@@ -109,13 +109,33 @@ function copySettingsFromOldSpreadsheet() {
   var startingRow = 7;
   var evalColLetter = "E";  // i.e., use this column to determine the number of rows to copy. Typically, this is the column that has complete info in every row.
   var sourceRangeStartLetter = "E";
-  var sourceRangeEndLetter = "H";
+  var sourceRangeEndLetter = "E";
   var targetRangeStartLetter = "E";
   var isReplaceData = true;  // true = *replace* data on target and clear the target range when copying. false = *append* data
   var formulasOnly = "mix";
     // true = copy *only* formulas
     // false = convert formulas to static values
     // "mix" = (don't forget the quotes" combine static *and* formulas
+  var manualLastRow = false; // false = let the script figure out the last row. Otherwise, enter a number to manually set the last row to copy.
+
+  copyDataWithoutFormatting({sourceSpreadsheet: sourceSpreadsheet,
+                          sourceSheetName: sourceSheetName,
+                          targetSpreadsheet: targetSpreadsheet,
+                          targetSheetName: targetSheetName,
+                          startingRow: startingRow,
+                          evalColLetter: evalColLetter,
+                          sourceRangeStartLetter: sourceRangeStartLetter,
+                          sourceRangeEndLetter: sourceRangeEndLetter,
+                          targetRangeStartLetter: targetRangeStartLetter,
+                          isReplaceData: isReplaceData,
+                          formulasOnly: formulasOnly,
+                          manualLastRow: manualLastRow});
+
+  var evalColLetter = "F";  // i.e., use this column to determine the number of rows to copy. Typically, this is the column that has complete info in every row.
+  var sourceRangeStartLetter = "F";
+  var sourceRangeEndLetter = "G";
+  var targetRangeStartLetter = "F";
+  var manualLastRow = 55;
   
   copyDataWithoutFormatting({sourceSpreadsheet: sourceSpreadsheet,
                           sourceSheetName: sourceSheetName,
@@ -127,8 +147,27 @@ function copySettingsFromOldSpreadsheet() {
                           sourceRangeEndLetter: sourceRangeEndLetter,
                           targetRangeStartLetter: targetRangeStartLetter,
                           isReplaceData: isReplaceData,
-                          formulasOnly: formulasOnly});
+                          formulasOnly: formulasOnly,
+                          manualLastRow: manualLastRow});
 
+  var evalColLetter = "H";  // i.e., use this column to determine the number of rows to copy. Typically, this is the column that has complete info in every row.
+  var sourceRangeStartLetter = "H";
+  var sourceRangeEndLetter = "H";
+  var targetRangeStartLetter = "H";
+  var manualLastRow = false;
+    
+  copyDataWithoutFormatting({sourceSpreadsheet: sourceSpreadsheet,
+                          sourceSheetName: sourceSheetName,
+                          targetSpreadsheet: targetSpreadsheet,
+                          targetSheetName: targetSheetName,
+                          startingRow: startingRow,
+                          evalColLetter: evalColLetter,
+                          sourceRangeStartLetter: sourceRangeStartLetter,
+                          sourceRangeEndLetter: sourceRangeEndLetter,
+                          targetRangeStartLetter: targetRangeStartLetter,
+                          isReplaceData: isReplaceData,
+                          formulasOnly: formulasOnly,
+                          manualLastRow: manualLastRow});
 }
 
 // all the functions below are helper functions
@@ -193,6 +232,7 @@ function copyDataWithoutFormatting(parameters) {
   var targetRangeStartLetter = parameters.targetRangeStartLetter;
   var isReplaceData = parameters.isReplaceData;
   var formulasOnly = parameters.formulasOnly;
+  var manualLastRow = parameters.manualLastRow;
   
   var ss = sourceSpreadsheet.getSheetByName(sourceSheetName);
   var ts = targetSpreadsheet.getSheetByName(targetSheetName);
@@ -201,8 +241,8 @@ function copyDataWithoutFormatting(parameters) {
   var sourceNumberOfCols = sourceRangeEndColNumber-sourceRangeStartColNumber+1;
   var targetRangeStartColNumber = ss.getRange(targetRangeStartLetter+"1").getColumn();
   
-  var sourceLastRow = getLastRowOfCol(ss, evalColLetter);
-  
+  var sourceLastRow = manualLastRow != false ? manualLastRow : getLastRowOfCol(ss, evalColLetter);
+
   var sourceToGet = sourceRangeStartLetter+startingRow+":" + sourceRangeEndLetter + sourceLastRow;
   var sourceNumberOfRows = sourceLastRow-startingRow+1;
   
@@ -219,10 +259,13 @@ function copyDataWithoutFormatting(parameters) {
   var targetFirstEmptyRow = ts.getLastRow() + 1;
   
   if (isReplaceData) {
-    ts.getRange(startingRow, targetRangeStartColNumber, targetFirstEmptyRow, sourceNumberOfCols).setValue('');
+      Logger.log("startingRow: "+startingRow);
+      Logger.log("targetRangeStartColNumber: "+targetRangeStartColNumber);
+      Logger.log("targetFirstEmptyRow: "+targetFirstEmptyRow);
+      Logger.log("sourceNumberOfCols: "+sourceNumberOfCols);
     var targetFirstEmptyRow = startingRow;
+    ts.getRange(startingRow, targetRangeStartColNumber, targetFirstEmptyRow, sourceNumberOfCols).setValue('');
   }
-  
   ts.getRange(targetFirstEmptyRow, targetRangeStartColNumber, sourceNumberOfRows, sourceNumberOfCols).setValues(dataToCopy);
 }
 
