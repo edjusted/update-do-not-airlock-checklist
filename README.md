@@ -26,9 +26,9 @@ Click the save button to save.
 After a few seconds, you should see a new menu called **Upgrade from old Checklist**.
 
 5. Click on the new **Upgrade from old Checklist** menu, and select one of the following:
-- Import/overwrite Crew (manual)<sup>*</sup>
+- Import/overwrite Crew (manual Fused / Level / Active cols)<sup>*</sup>
 - Import/overwrite Crew (Import tab)<sup>*</sup>
-- Import/overwrite Crew Notes only
+- Import/overwrite Crew Notes/Keep/Cite cols
 - Import/overwrite Missions
 - Import/overwrite Settings
 - Copy over user tabs (see Options below)
@@ -43,8 +43,8 @@ The reason each function needs to be called separately is because this GS is ext
 
 
 
-`*` **Import/overwrite Crew Note**: if you manage your crew manually by manually typing in your crew levels and number of stars, you'll want to use the **Import/overwrite Crew (manual)** option, which will copy over all of your manually entered info.\
-&nbsp; If you use [Datacore](https://datacore.app/playertools/) to import your crew data, you can either use the **Import/overwrite Crew (Import tab)**, which copies over the contents of the old **Import** tab. Or you can simply reimport a fresh export from Datacore.
+`*` **Import/overwrite Crew Note**: if you manage your crew manually by manually typing in your crew levels and number of stars, you'll want to use the **Import/overwrite Crew (manual Fused / Level / Active cols)** option, which will copy over all of your manually entered info (i.e. the "Fused", "Level", and "Active" checkbox columns.\
+&nbsp; If you use [Datacore](https://datacore.app/playertools/) to import your crew data, you can either use the **Import/overwrite Crew (Import tab)**, which just copies over the contents of the old **Import** tab. Or you can simply reimport a fresh export from Datacore.
 
 # Options
 
