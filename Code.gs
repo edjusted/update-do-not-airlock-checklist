@@ -60,8 +60,6 @@ function copyCrewInfoManualFromOldSpreadsheet() {
   if (oldColLetter != 0 && newColLetter != 0) {
     readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
   }
-
-  copyCrewNotesFromOldSpreadsheet();
 }
 
 function copyCrewNotesFromOldSpreadsheet() {
