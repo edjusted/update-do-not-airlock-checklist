@@ -14,7 +14,7 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Upgrade from old Checklist')
     // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
-    .addItem('Import/overwrite Crew (manual Fused/ Level / Active cols)', 'copyCrewInfoManualFromOldSpreadsheet')
+    .addItem('Import/overwrite Crew (manual Fused / Level / Active cols)', 'copyCrewInfoManualFromOldSpreadsheet')
     .addItem('Import/overwrite Crew (Import tab)', 'copyImportTabFromOldSpreadsheet')
     .addItem('Import/overwrite Crew Notes/Keep/Cite cols', 'copyCrewNotesFromOldSpreadsheet')
     .addItem('Import/overwrite Missions', 'copyMissionsFromOldSpreadsheet')
