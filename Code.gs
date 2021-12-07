@@ -14,9 +14,9 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Upgrade from old Checklist')
     // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
-    .addItem('Import/overwrite Crew (manual)', 'copyCrewInfoManualFromOldSpreadsheet')
+    .addItem('Import/overwrite Crew (manual Fused/ Level / Active cols)', 'copyCrewInfoManualFromOldSpreadsheet')
     .addItem('Import/overwrite Crew (Import tab)', 'copyImportTabFromOldSpreadsheet')
-    .addItem('Import/overwrite Crew Notes only', 'copyCrewNotesFromOldSpreadsheet')
+    .addItem('Import/overwrite Crew Notes/Keep/Cite cols', 'copyCrewNotesFromOldSpreadsheet')
     .addItem('Import/overwrite Missions', 'copyMissionsFromOldSpreadsheet')
     .addItem('Import/overwrite Settings', 'copySettingsFromOldSpreadsheet')
     .addItem('Copy over user tabs', 'copyUserTabsFromOldSpreadsheet')
@@ -61,19 +61,6 @@ function copyCrewInfoManualFromOldSpreadsheet() {
     readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
   }
 
-  // Keep
-  var oldColLetter = findColOfHeader(oldHeaders, "Keep");
-  var newColLetter = findColOfHeader(newHeaders, "Keep");
-  if (oldColLetter != 0 && newColLetter != 0) {
-    readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
-  }
-  // cite, if needed
-  var oldColLetter = findColOfHeader(oldHeaders, "Cite");
-  var newColLetter = findColOfHeader(newHeaders, "Cite");
-  if (oldColLetter != 0 && newColLetter != 0) {
-    readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
-  }
-
   copyCrewNotesFromOldSpreadsheet();
 }
 
@@ -94,6 +81,20 @@ function copyCrewNotesFromOldSpreadsheet() {
   if (oldColLetter != 0 && newColLetter != 0) {
     Logger.log("copying notes");
     readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
+
+    // Keep
+    var oldColLetter = findColOfHeader(oldHeaders, "Keep");
+    var newColLetter = findColOfHeader(newHeaders, "Keep");
+    if (oldColLetter != 0 && newColLetter != 0) {
+      readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
+    }
+    // cite, if needed
+    var oldColLetter = findColOfHeader(oldHeaders, "Cite");
+    var newColLetter = findColOfHeader(newHeaders, "Cite");
+    if (oldColLetter != 0 && newColLetter != 0) {
+      readMatchValuesAndWrite(sheet, startingRow, oldSheet, oldColLetter, newColLetter, valuesOfOldNames, valuesOfNamesToLookup);
+    }
+
   }
 }
 
