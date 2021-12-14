@@ -13,25 +13,43 @@ function onOpen() {
 
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Upgrade from old Checklist')
-    // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldSpreadsheet')
-    .addItem('Import/overwrite Crew (manual Fused / Level / Active cols)', 'copyCrewInfoManualFromOldSpreadsheet')
-    .addItem('Import/overwrite Crew (Import tab)', 'copyImportTabFromOldSpreadsheet')
-    .addItem('Import/overwrite Crew Notes/Keep/Cite cols', 'copyCrewNotesFromOldSpreadsheet')
-    .addItem('Import/overwrite Missions', 'copyMissionsFromOldSpreadsheet')
-    .addItem('Import/overwrite Settings', 'copySettingsFromOldSpreadsheet')
-    .addItem('Copy over user tabs', 'copyUserTabsFromOldSpreadsheet')
+    // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldGs')
+    .addItem('Import/overwrite Crew info (Fused / Level / Active / Keep / Cite / Notes cols)', 'copyCrewInfoFromOldGs')
+    // .addItem('Import/overwrite Crew (Import tab)', 'copyImportTabFromOldGs')
+    // .addItem('Import/overwrite Crew Notes/Keep/Cite cols', 'copyCrewKeepCiteNotesColsFromOldGs')
+    .addItem('Import/overwrite Missions', 'copyMissionsFromOldGs')
+    .addItem('Import/overwrite Settings', 'copySettingsFromOldGs')
+    .addItem('Copy over custom tabs', 'copyCustomTabsFromOldGs')
+    // .addItem('Import/overwrite Crew, Notes, Missions & Settings', 'importAllFromOldGs')
+
+    .addSeparator()
+    .addSubMenu(ui.createMenu('For troubleshooting')
+      .addItem('Import/overwrite Crew (manual Fused / Level / Active cols)', 'copyCrewInfoManualFromOldGs')
+      .addItem('Import/overwrite Crew (Import tab)', 'copyImportTabFromOldGs')
+      .addItem('Import/overwrite Crew Notes/Keep/Cite cols', 'copyCrewKeepCiteNotesColsFromOldGs'))
     .addToUi();
 }
 
-function importAllFromOldSpreadsheet() {
-  copyCrewNotesFromOldSpreadsheet();
-  copyMissionsFromOldSpreadsheet();
-  copySettingsFromOldSpreadsheet();
-  copyImportTabFromOldSpreadsheet();
-  copyUserTabsFromOldSpreadsheet();
+function importAllFromOldGs() {
+  copyCrewKeepCiteNotesColsFromOldGs();
+  copyMissionsFromOldGs();
+  copySettingsFromOldGs();
+  copyImportTabFromOldGs();
+  copyCustomTabsFromOldGs();
 }
 
-function copyCrewInfoManualFromOldSpreadsheet() {
+function copyCrewInfoFromOldGs() {
+  copyCrewKeepCiteNotesColsFromOldGs();
+  var manual = thisGs.getSheetByName("UpgradeFromOldGs").getRange("B2").getValue();
+  if (manual == true) {
+    copyCrewInfoManualFromOldGs();
+  } else {
+    copyImportTabFromOldGs();
+  }
+}
+
+
+function copyCrewInfoManualFromOldGs() {
   var sheet = thisGs.getSheetByName(crewSheetName);
   var startingRow = crewHeaderRow + 1;
   var rangeOfNamesToLookup = sheet.getRange("A" + startingRow + ":A" + (sheet.getLastRow()));
@@ -62,7 +80,7 @@ function copyCrewInfoManualFromOldSpreadsheet() {
   }
 }
 
-function copyCrewNotesFromOldSpreadsheet() {
+function copyCrewKeepCiteNotesColsFromOldGs() {
   var sheet = thisGs.getSheetByName(crewSheetName);
   var startingRow = crewHeaderRow + 1;
   var rangeOfNamesToLookup = sheet.getRange("A" + startingRow + ":A" + (sheet.getLastRow()));
@@ -96,7 +114,7 @@ function copyCrewNotesFromOldSpreadsheet() {
   }
 }
 
-function copyImportTabFromOldSpreadsheet() {
+function copyImportTabFromOldGs() {
   var sheet = thisGs.getSheetByName('Import');
   var oldSs = getOldSsUrl();
   var oldSheet = oldSs.getSheetByName('Import');
@@ -105,8 +123,8 @@ function copyImportTabFromOldSpreadsheet() {
   sheet.getRange(1, 1, oldImportData.length, oldImportData[0].length).setValues(oldImportData);
 }
 
-function copyUserTabsFromOldSpreadsheet() {
-  tabsToTransfer = thisGs.getSheetByName("UpgradeFromOldGs").getRange("B2").getValue();
+function copyCustomTabsFromOldGs() {
+  tabsToTransfer = thisGs.getSheetByName("UpgradeFromOldGs").getRange("B3").getValue();
   if (tabsToTransfer !== "") {
     var copySheets = splitString(tabsToTransfer);
     var sourceSpreadsheet = getOldSsUrl();
@@ -119,7 +137,7 @@ function copyUserTabsFromOldSpreadsheet() {
   }
 }
 
-function copyMissionsFromOldSpreadsheet() {
+function copyMissionsFromOldGs() {
   var sheetName = "Missions";
   var rangeToCopy = "D10:D129";
   copyRangeFromOldSs(sheetName, rangeToCopy);
@@ -127,7 +145,7 @@ function copyMissionsFromOldSpreadsheet() {
   copyRangeFromOldSs(sheetName, rangeToCopy);
 }
 
-function copySettingsFromOldSpreadsheet() {
+function copySettingsFromOldGs() {
   var sheetName = "Settings";
   var sourceSpreadsheet = getOldSsUrl();
   var sourceSheetName = sheetName;
